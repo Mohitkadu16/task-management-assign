@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --color-background: #0B0F19;
+  --color-surface: #1A1F2C;
+  --color-primary: #8B5CF6;
+  --color-secondary: #3B82F6;
+  --color-accent: #F472B6;
+  --color-textMain: #F8FAFC;
+  --color-textMuted: #94A3B8;
+  --color-danger: #EF4444;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  
+  --font-sans: 'Inter', sans-serif;
+  
+  --animate-fade-in: fadeIn 0.3s ease-out;
+  --animate-slide-up: slideUp 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@layer base {
+  body {
+    @apply bg-background text-textMain font-sans antialiased;
+    /* Subtle gradient background for premium feel */
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.15), transparent 25%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  /* Style select options globally for dark mode */
+  select option {
+    @apply bg-surface text-textMain;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-surface/60 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+  
+  .glass-card {
+    @apply bg-surface/40 backdrop-blur-lg border border-white/5 rounded-2xl shadow-lg transition-all duration-300;
+  }
+  
+  .glass-card:hover {
+    @apply bg-surface/60 border-white/10 shadow-primary/10;
+  }
+
+  .glass-input {
+    @apply bg-black/20 border border-white/10 rounded-lg text-textMain placeholder-textMuted focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-secondary text-white font-medium py-2 px-4 rounded-lg shadow-lg hover:shadow-primary/30 transition-all duration-300 active:scale-95;
+  }
+
+  .btn-danger {
+    @apply bg-danger/10 text-danger border border-danger/20 font-medium py-2 px-4 rounded-lg hover:bg-danger hover:text-white transition-all duration-300 active:scale-95;
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-textMain border border-white/20 font-medium py-2 px-4 rounded-lg hover:bg-white/5 transition-all duration-300 active:scale-95;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
